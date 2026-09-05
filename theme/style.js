@@ -13,8 +13,8 @@
     const close = document.createElement('button');
     close.className = 'exe-open-close'; close.type = 'button'; close.textContent = '×';
     close.setAttribute('aria-label', 'Ocultar enlace de eXeLearning');
-    close.addEventListener('click', () => { link.remove(); close.remove(); });
-    document.body.append(close);
+    close.addEventListener('click', event => { event.preventDefault(); event.stopPropagation(); link.remove(); });
+    link.append(close);
   }
   function init() {
     addOpenLink();
