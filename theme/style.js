@@ -7,7 +7,7 @@
     link.href = 'https://static.exelearning.dev/?url=https://github-proxy.exelearning.dev/?repo=ateeducacion/exelearning-style-pocket&branch=main';
     link.target = '_blank';
     link.rel = 'noopener';
-    link.innerHTML = '<strong class="exe-open-logo">eXe</strong><span>Edit with eXeLearning</span>';
+    link.innerHTML = '<img class="exe-open-logo" src="icons/exe-logo.svg" alt="eXe"><span>Edit with eXeLearning</span>';
     link.setAttribute('aria-label', 'Abrir este recurso en eXeLearning');
     document.body.append(link);
   }
