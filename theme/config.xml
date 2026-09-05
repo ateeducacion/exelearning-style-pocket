@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<theme>
+  <name>pocket</name>
+  <title>Pocket</title>
+  <version>1.0.0</version>
+  <compatibility>3.0</compatibility>
+  <author>Ernesto Serrano</author>
+  <license>GNU General Public License v3.0</license>
+  <license-url>https://www.gnu.org/licenses/gpl-3.0.html</license-url>
+  <description>Consola portátil con pantalla verde, cruceta y botones. El menú se genera a partir de las páginas del recurso; cada página permite entrar en sus iDevices originales. Incluye navegación con teclado, sonido opcional y pantalla ampliable. Tipografía VT323 de Peter Hull, SIL Open Font License 1.1. Iconos del estilo Spectrum 128K del Área de Tecnología Educativa, CC0.</description>
+  <downloadable>1</downloadable>
+</theme>

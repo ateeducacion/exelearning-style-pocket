@@ -1,0 +1,150 @@
+/* Pocket — eXeLearning. Console adapted from ernesto.es (GPL-3.0). */
+@font-face { font-family: Pocket; src: url("fonts/VT323-Regular.woff2") format("woff2"); font-display: swap; }
+:root { --lcd: #a9b96b; --pixel: #23351c; }
+/* Readable fallback for the editor, print and JavaScript-disabled exports. */
+body.exe-export { color: #293b53; background: #ccdae8; }
+.exe-export > .exe-content { max-width: 1100px; margin: auto; padding: 24px; }
+.exe-export .box { background: #f3f6ef; border: 1px solid #70835a; padding: 16px; }
+.exe-export img { max-width: 100%; height: auto; }
+.exe-export #siteNav ul { list-style: none; padding-left: 20px; }
+.exe-export #siteNav a { display: inline-block; padding: 6px; }
+.exe-export .box-title { font-family: Pocket, monospace; }
+.exe-pocket { margin: 0; min-height: 100svh; }
+.exe-pocket::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1; background: radial-gradient(1px 1px at 9% 19%, #557597 98%, transparent), radial-gradient(1px 1px at 27% 62%, #6382a0 98%, transparent), radial-gradient(2px 2px at 76% 14%, #557597 98%, transparent), radial-gradient(1px 1px at 88% 74%, #6382a0 98%, transparent); background-size: 503px 457px; opacity: .5; }
+.exe-pocket > .exe-content { background: none; max-width: none; padding: 24px 12px 30px; min-height: 100svh; display: grid; place-content: center; }
+.exe-pocket #siteNav, .exe-pocket .main-header, .exe-pocket #exe-client-search, .exe-pocket .nav-buttons, .exe-pocket #siteFooter, .exe-pocket #made-with-eXe { display: none !important; }
+.exe-pocket #skipNav { position: fixed; top: -100px; left: 10px; }
+.exe-pocket #skipNav:focus { top: 10px; z-index: 10; background: white; padding: 10px; }
+.pocket-console, .pocket-console * { box-sizing: border-box; }
+.pocket-console { font: 16px/1.2 Arial, sans-serif; }
+.pocket-console button { font: inherit; cursor: pointer; touch-action: manipulation; }
+.pocket-console :focus-visible { outline: 3px solid #313956; outline-offset: 4px; }
+.pocket-console [hidden] { display: none !important; }
+.pocket-console { position: relative; width: 400px; height: 658px; padding: 53px 27px 0; background: linear-gradient(115deg, #deded5 0%, #d5d5cd 50%, #c5c5bd 100%); border-radius: 17px 17px 82px 17px; border: 1px solid #b2b2aa; box-shadow: inset 4px 3px 4px #f5f5ed, inset -7px -8px 8px #adada4, 8px 14px 0 -3px #a8a9a0, 11px 17px 0 -3px #93948c, 18px 30px 35px -10px #292c293b, 35px 45px 70px -20px #292c2930; }
+.top-edge { position: absolute; height: 30px; border-bottom: 3px solid #b9b9b1; box-shadow: 0 1px #ecece5; inset: 0 0 auto; }
+.top-edge::before, .top-edge::after { content: ""; position: absolute; top: 0; bottom: 0; width: 3px; background: #b9b9b1; box-shadow: 1px 0 #e7e7df; }
+.top-edge::before { left: 29px; }.top-edge::after { right: 29px; }
+.top-edge span { position: absolute; top: 11px; left: 48px; font: bold 8px Arial, sans-serif; color: #696b64; }
+.power { position: absolute; top: -7px; left: 50px; width: 43px; height: 13px; border: 1px solid #787b73; border-radius: 3px 3px 0 0; background: repeating-linear-gradient(90deg, #91948b 0 3px, #656960 3px 4px); }
+.power::after { content: ""; position: absolute; top: 0; right: 3px; width: 14px; height: 10px; background: #444a41; border-radius: 1px; }
+.power[aria-pressed="false"]::after { right: 24px; }
+.bezel { position: relative; border: 1px solid #6d7074; padding: 30px 22px 24px 43px; border-radius: 12px 12px 43px 12px; background: linear-gradient(125deg, #7c7f87, #646872); box-shadow: inset 1px 2px 2px #5b5f65, 1px 1px #f1f1e8; }
+.bezel-caption { position: absolute; display: flex; align-items: center; gap: 9px; top: 12px; left: 13px; right: 13px; font-size: 7px; letter-spacing: .8px; color: #eeeef1; white-space: nowrap; }
+.bezel-caption span { flex: 1; height: 5px; border-top: 2px solid #643b56; border-bottom: 2px solid #343b69; }
+.battery { position: absolute; top: 90px; left: 6px; text-align: center; color: #f1f0ed; font: 5px Arial, sans-serif; }
+.battery i { display: block; width: 8px; height: 8px; margin: 0 auto 7px; background: #ed5b43; border-radius: 50%; box-shadow: 0 0 7px #f6644e, inset 1px 1px 2px #ffb591; }
+.lcd { color-scheme: light; position: relative; height: 251px; color: var(--pixel); background: var(--lcd); border: 3px solid #424b36; box-shadow: inset 4px 5px 12px #34421d66; font-family: Pocket, "Courier New", monospace; }
+.lcd::after { content: ""; pointer-events: none; position: absolute; inset: 0; opacity: .12; background: repeating-linear-gradient(0deg, transparent 0 2px, #34451f 2px 3px), repeating-linear-gradient(90deg, transparent 0 2px, #34451f 2px 3px); box-shadow: inset 2px 3px 9px #20331580; }
+.pocket-screen { position: relative; height: calc(100% - 21px); overflow: auto; padding: 10px; scrollbar-width: thin; scrollbar-color: var(--pixel) var(--lcd); overscroll-behavior: contain; }
+.pocket-screen:focus-visible { outline: 2px solid var(--pixel); outline-offset: -4px; }
+.pocket-screen h2 { font-size: 23px; line-height: 1; margin: 0 0 12px; font-weight: 400; }
+.pocket-screen p, .pocket-screen li, .pocket-screen a { font-size: 19px; line-height: 1.15; }
+.pocket-screen p { margin: 10px 0; }.pocket-screen ul { padding-left: 18px; }.pocket-screen li { margin-bottom: 7px; }
+.pocket-screen article { overflow-wrap: anywhere; }
+.pocket-screen article h2 { border-bottom: 2px solid; padding-bottom: 8px; }
+.pocket-screen a { padding: 5px 0; text-underline-offset: 3px; }
+.pocket-screen button { color: inherit; }
+.pocket-screen button:focus-visible, .pocket-screen a:focus-visible { outline: 2px solid var(--pixel); outline-offset: -2px; }
+.pocket-screen-status { height: 21px; padding: 3px 7px; border-top: 1px solid #42583088; font-size: 13px; line-height: 1; text-align: center; }
+.welcome { text-align: center; }
+.welcome .pocket-screen-kicker { font-size: 11px; letter-spacing: 2px; margin: 0 0 9px; }
+.pixel-avatar { width: 39px; height: 39px; margin-bottom: 5px; }
+.welcome h2 { font-size: 33px; line-height: .85; letter-spacing: 2px; margin: 0; }
+.welcome .pocket-screen-tagline { font-size: 13px; margin: 9px 0 5px; }
+.start-prompt { border: 0; padding: 5px; background: none; font-size: 19px; }
+.menu-title { border-bottom: 2px solid; padding-bottom: 7px; }
+.pocket-screen-menu { display: grid; gap: 3px; }
+.pocket-screen-menu button { display: flex; align-items: baseline; gap: 5px; width: 100%; padding: 5px 4px; border: 0; background: none; text-align: left; font-size: 19px; line-height: 1.05; }
+.pocket-screen-menu button::before { content: "▸"; visibility: hidden; flex: 0 0 9px; }
+.pocket-screen-menu button[aria-current="true"] { background: var(--pixel); color: var(--lcd); }
+.pocket-screen-menu button[aria-current="true"]::before { visibility: visible; }
+.pocket-screen-menu button small { font-size: 12px; margin-left: auto; padding-left: 4px; }
+.brand { display: flex; justify-content: space-between; align-items: center; color: #313956; padding-top: 10px; font-size: 17px; letter-spacing: -.7px; }
+.pocket-console-exit { display: none; font: bold 9px Arial, sans-serif; padding: 8px 4px; letter-spacing: 0; text-decoration: none; }
+.pocket-console-exit:focus-visible { outline-color: #313956; }
+.brand strong { font-size: 18px; }.brand em { font-size: 25px; letter-spacing: -1px; margin-left: 4px; }.brand sup { font-size: 8px; margin-left: 3px; }
+.controls { display: flex; justify-content: space-between; align-items: center; margin-top: 34px; }
+.dpad { display: grid; grid-template-columns: repeat(3, 35px); grid-template-rows: repeat(3, 35px); filter: drop-shadow(3px 5px 2px #65675e); }
+.dpad button, .dpad span { background: #292c2b; border: 0; color: #757871; padding: 0; font-size: 13px; box-shadow: inset 2px 2px 2px #51534f; }
+.dpad .up { grid-area: 1 / 2; border-radius: 4px 4px 0 0; }.dpad .left { grid-area: 2 / 1; border-radius: 4px 0 0 4px; }.dpad span { grid-area: 2 / 2; box-shadow: none; position: relative; }.dpad span::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: linear-gradient(140deg, #1e211f, #363a36); border: 1px solid #41443e; }.dpad .right { grid-area: 2 / 3; border-radius: 0 4px 4px 0; }.dpad .down { grid-area: 3 / 2; border-radius: 0 0 4px 4px; }
+.action-buttons { display: flex; gap: 16px; transform: rotate(-25deg); padding: 10px 9px 3px; border-radius: 40px; background: linear-gradient(#b7b8ae, #d7d8cf); box-shadow: inset 1px 2px 3px #a8aba0, 1px 1px #e3e3dc; }
+.action-buttons div { position: relative; }
+.action-buttons button { width: 53px; height: 53px; border: 1px solid #65213c; border-radius: 50%; color: transparent; background: linear-gradient(130deg, #a32a56, #79173e); box-shadow: inset 2px 2px 3px #bd4970, inset -2px -3px 2px #661630, 2px 4px 3px #77766c; }
+.action-buttons span { position: absolute; top: 66px; left: 21px; color: #333d57; font-weight: bold; font-size: 13px; }
+.system-buttons { display: flex; gap: 19px; margin: 27px 0 0 104px; transform: rotate(-25deg); width: fit-content; }
+.system-buttons div { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.system-buttons button { width: 46px; height: 14px; border-radius: 9px; border: 1px solid #777970; background: linear-gradient(#999b91, #797d73); box-shadow: 1px 3px 2px #787b70, inset 1px 1px #b8b9b0; }
+.system-buttons span { font-size: 8px; color: #343e57; letter-spacing: 1px; font-weight: bold; }
+.system-buttons button[aria-pressed="true"] { background: #424c3b; }
+.system-buttons button { position: relative; }
+.system-buttons button::before, .power::before { content: ""; position: absolute; inset: -8px -3px; }
+.speaker { position: absolute; right: 25px; bottom: 32px; display: flex; gap: 9px; transform: rotate(-28deg); }
+.speaker i { width: 6px; height: 58px; border-radius: 5px; background: #96998e; box-shadow: inset 2px 1px 2px #646b5f, 1px 1px #ecece3; }
+.bottom-mark { position: absolute; bottom: 11px; left: 130px; font-size: 6px; letter-spacing: 1px; color: #75796d; }.bottom-mark span { font-size: 9px; }
+.pocket-console button:active, .pocket-console button.pressed { filter: brightness(.8); translate: 0 2px; }
+.pocket-console.is-off .lcd { background: #88916b; }.pocket-console.is-off .pocket-screen, .pocket-console.is-off .pocket-screen-status { visibility: hidden; }.pocket-console.is-off .battery i { background: #662f2b; box-shadow: inset 1px 1px 2px #47221f; }
+
+.pocket-console .console-exit { display: inline-block; border: 0; background: transparent; color: #313956; font: bold 9px Arial, sans-serif; padding: 8px 3px; }
+.pocket-console .pocket-screen { font: 20px/1.15 Pocket, monospace; }
+.pocket-console .pocket-screen h1 { font: 25px/1 Pocket, monospace; margin: 0 0 10px; }
+.pocket-console .welcome { padding-top: 8px; }
+.pocket-console .welcome h1 { font-size: 30px; text-transform: uppercase; }
+.pocket-console .pocket-screen .screen-tagline { font-size: 15px; }
+.pocket-console .pocket-screen .pocket-help { font-size: 14px; margin: 8px 0; }
+.pocket-console .pocket-screen .page { background: transparent; padding: 0; margin: 0; max-width: none; min-width: 0; }
+.pocket-console .pocket-screen .page-content { padding: 0; }
+.pocket-console .pocket-screen .box { background: transparent; color: var(--pixel); margin: 0; padding: 0; border: 0; box-shadow: none; }
+.pocket-console .pocket-screen .box-head { margin-bottom: 10px; border-bottom: 2px solid var(--pixel); pointer-events: none; }
+.pocket-console .pocket-screen .box-title { font: 24px/1 Pocket, monospace; color: inherit; padding-bottom: 7px; }
+.pocket-console .pocket-screen .box-icon, .pocket-console .pocket-screen .box-toggle { display: none; }
+.pocket-console .pocket-screen .box-content { padding: 0; }
+.pocket-console .pocket-screen a { color: var(--pixel); text-decoration: underline; }
+.pocket-console .pocket-screen p, .pocket-console .pocket-screen li { font-size: 19px; line-height: 1.2; text-align: start; }
+.pocket-console .pocket-screen figure { margin: 8px 0 14px !important; }
+.pocket-console .pocket-screen img { max-width: 100% !important; height: auto; filter: grayscale(1); mix-blend-mode: multiply; }
+.pocket-console .pocket-screen figure img { border-color: var(--pixel) !important; }
+.pocket-console .pocket-screen figcaption { color: var(--pixel) !important; font: 16px/1.15 Pocket, monospace !important; }
+.pocket-console .pocket-screen .idevice_node { overflow-wrap: anywhere; }
+.pocket-console .pocket-screen input, .pocket-console .pocket-screen select, .pocket-console .pocket-screen textarea { max-width: 100%; accent-color: var(--pixel); font: 16px Arial, sans-serif; }
+.pocket-console .pocket-screen button, .pocket-console .pocket-screen .btn { color: var(--pixel); font-family: Pocket, monospace; }
+.pocket-console .pocket-screen table { display: block; max-width: 100%; overflow: auto; }
+.pocket-console .pocket-screen iframe, .pocket-console .pocket-screen video, .pocket-console .pocket-screen canvas { max-width: 100%; }
+.pocket-console .pocket-screen .TOFP-MainContainer, .pocket-console .pocket-screen .TOFP-GameContainer, .pocket-console .pocket-screen .exe-sortableList { min-width: 0; max-width: 100%; font-size: 16px; background: transparent; }
+.pocket-console .pocket-screen .TOFP-QuestionDiv { background: transparent; border-bottom: 1px solid var(--pixel); padding: 10px 0; }
+.pocket-console .pocket-screen .TOFP-Answers label { display: inline-block; padding: 6px; }
+.pocket-console .pocket-screen .exe-sortableList-list li { background: #b9c885; color: var(--pixel); padding: 7px; }
+.pocket-console .pocket-screen .pocket-active-control { outline: 2px solid var(--pixel); outline-offset: 1px; }
+.pocket-console .pocket-screen-menu a { display: flex; align-items: baseline; gap: 5px; width: 100%; padding: 5px 4px; border: 0; background: none; text-align: left; font-size: 20px; line-height: 1.05; text-decoration: none; }
+.pocket-console .pocket-screen-menu a::before { content: "▸"; visibility: hidden; flex: 0 0 9px; }
+.pocket-console .pocket-screen-menu a[aria-current="true"] { background: var(--pixel); color: var(--lcd); }
+.pocket-console .pocket-screen-menu a[aria-current="true"]::before { visibility: visible; }
+.pocket-console.is-expanded { width: min(940px, calc(100vw - 28px)); height: auto; min-height: 658px; padding-bottom: 125px; }
+.pocket-console.is-expanded .lcd { height: min(65vh, 650px); min-height: 280px; }
+.pocket-console.is-expanded .controls { max-width: 350px; margin-inline: auto; }
+.pocket-console.is-expanded .system-buttons { margin-inline: auto; }
+.pocket-console.is-expanded .pocket-screen .idevice_node { font-family: Arial, sans-serif; }
+.pocket-console.is-expanded .pocket-screen .idevice_node img { filter: none; mix-blend-mode: normal; }
+@media (max-width: 440px) {
+  .pocket-console { width: 340px; height: 586px; padding: 47px 19px 0; border-bottom-right-radius: 65px; }
+  .pocket-console .bezel { padding: 28px 17px 20px 35px; }.pocket-console .lcd { height: 230px; }
+  .pocket-console .battery { left: 3px; font-size: 4px; }.pocket-console .bezel-caption { font-size: 6px; gap: 5px; }
+  .pocket-console .controls { margin-top: 28px; }.pocket-console .system-buttons { margin-left: 87px; }
+  .pocket-console .speaker { right: 20px; bottom: 26px; gap: 7px; }.pocket-console .speaker i { height: 45px; }
+  .pocket-console .brand em { font-size: 23px; }.pocket-console .brand strong { font-size: 16px; }
+}
+@media (max-width: 365px) {
+  .exe-pocket > .exe-content { padding-inline: 8px; }.pocket-console { width: 300px; padding-inline: 14px; }
+  .pocket-console .bezel { padding-right: 12px; padding-left: 30px; }.pocket-console .bezel-caption { font-size: 5px; }
+  .pocket-console .action-buttons { gap: 10px; }.pocket-console .action-buttons button { width: 46px; height: 46px; }
+  .pocket-console .system-buttons { margin-left: 70px; }
+}
+@media print {
+  .exe-pocket > .exe-content, .pocket-console, .pocket-console .bezel, .pocket-console .lcd, .pocket-console .pocket-screen { display: block !important; position: static; width: auto !important; height: auto !important; min-height: 0; overflow: visible; padding: 0; margin: 0; background: white; border: 0; box-shadow: none; }
+  .pocket-console > :not(.bezel), .pocket-console .bezel-caption, .pocket-console .battery, .pocket-console #pocket-view, .pocket-console .pocket-screen-status, .pocket-console .lcd::after { display: none !important; }
+  .pocket-console main[hidden], .pocket-console .box[hidden], .pocket-console .idevice_node[hidden] { display: block !important; }
+  .pocket-console .pocket-screen img { filter: none; mix-blend-mode: normal; }
+}
+
+.pocket-console .pocket-screen .welcome p { text-align: center; }
+.pocket-console.is-off .pocket-screen { opacity: 0; }
+.pocket-console .pocket-screen-menu button[aria-current="true"] { color: var(--lcd); }
