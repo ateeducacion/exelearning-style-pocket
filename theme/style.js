@@ -1,5 +1,6 @@
 /* Pocket — eXeLearning. GPL-3.0. Native pages and live iDevices inside a handheld. */
 (() => {
+  const assetBase = document.currentScript ? new URL('.', document.currentScript.src) : null;
   function addOpenLink() {
     if (!document.querySelector('.exe-export') || document.querySelector('.exe-open-exelearning')) return;
     const link = document.createElement('a');
@@ -7,7 +8,7 @@
     link.href = 'https://static.exelearning.dev/?url=https://github-proxy.exelearning.dev/?repo=ateeducacion/exelearning-style-pocket&branch=main';
     link.target = '_blank';
     link.rel = 'noopener';
-    link.innerHTML = '<img class="exe-open-logo" src="icons/exe-logo.svg" alt=""><span>Edit with eXeLearning</span>';
+    link.innerHTML = `<img class="exe-open-logo" src="${new URL('icons/exe-logo.svg', assetBase || location.href)}" alt=""><span>Edit with eXeLearning</span>`;
     link.setAttribute('aria-label', 'Abrir este recurso en eXeLearning');
     document.body.append(link);
     const close = document.createElement('button');
