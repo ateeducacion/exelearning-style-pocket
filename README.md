@@ -49,7 +49,33 @@ Comprueban las 11 páginas, los iDevices originales, los ejercicios completos,
 el regreso a portada, el apagado, el contraste de selección y los tamaños móviles.
 Para regenerar la miniatura, añade `POCKET_SCREENSHOT=theme/screenshot.png` al comando.
 
+## Mantenimiento y publicación
+
+La estructura de publicación procede de `exelearning-style-hacker`:
+Actions, `.gitignore`, `.gitattributes`, licencia y notas de `git archive`.
+
+- `python3 scripts/build_water_cycle.py`: reconstruye el ejemplo ELPX y el estilo
+  desde los archivos actuales, conservando las actividades editadas.
+- `python3 scripts/generate_social_preview.py`: regenera `social-preview.png`;
+  necesita Pillow (`python3 -m pip install Pillow`). Adaptado del script de Hacker
+  con la paleta de Pocket.
+- `scripts/package.py`, `scripts/check.py` y `scripts/check-browser.cjs`:
+  empaquetado y comprobaciones del recurso y la consola.
+
+El workflow **Release** se ejecuta manualmente desde Actions o al subir una etiqueta
+`v*`. Comprueba el ejemplo y genera `exelearning-style-pocket-<versión>.zip`,
+`pocket.zip` y `ciclo-del-agua.elpx`. En una ejecución manual se guardan como
+artefactos; con una etiqueta se adjuntan a la release.
+
+Los generadores de iconos Tron y de imágenes de malla de Hacker son específicos
+de su diseño. Pocket conserva los iconos de Spectrum y sus imágenes originales;
+el efecto de pantalla se aplica con CSS.
+
 ## Créditos y licencias
+
+[Licencia general CC0](LICENSE), como en Hacker, salvo los archivos que indican
+otra licencia.
+
 
 Carcasa adaptada del portfolio de Ernesto Serrano; tema bajo [GPL-3.0](theme/LICENSE).
 Unidad didáctica, ilustraciones e iconos reutilizados del estilo Spectrum 128K del
