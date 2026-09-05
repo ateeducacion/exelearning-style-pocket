@@ -9,6 +9,9 @@ body.exe-export { color: #293b53; background: #ccdae8; }
 .exe-export #siteNav ul { list-style: none; padding-left: 20px; }
 .exe-export #siteNav a { display: inline-block; padding: 6px; }
 .exe-export .box-title { font-family: Pocket, monospace; }
+.exe-open-exelearning { position: fixed; z-index: 10000; top: 25px; right: -58px; width: 235px; padding: 8px 6px; display: flex; align-items: center; justify-content: center; gap: 9px; transform: rotate(45deg); background: #23351c; color: #a9b96b !important; border: 2px solid #a9b96b; box-shadow: 3px 3px 0 #111; font: 16px/1 Pocket, monospace; text-align: center; text-decoration: none !important; }
+.exe-open-logo { font-size: 22px; letter-spacing: -2px; }
+.exe-open-exelearning:focus, .exe-open-exelearning:hover { background: #a9b96b; color: #23351c !important; outline: 3px solid #23351c; }
 .exe-pocket { margin: 0; min-height: 100svh; }
 .exe-pocket::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1; background: radial-gradient(1px 1px at 9% 19%, #557597 98%, transparent), radial-gradient(1px 1px at 27% 62%, #6382a0 98%, transparent), radial-gradient(2px 2px at 76% 14%, #557597 98%, transparent), radial-gradient(1px 1px at 88% 74%, #6382a0 98%, transparent); background-size: 503px 457px; opacity: .5; }
 .exe-pocket > .exe-content { background: none; max-width: none; padding: 24px 12px 30px; min-height: 100svh; display: grid; place-content: center; }

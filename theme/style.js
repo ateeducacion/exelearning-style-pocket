@@ -1,6 +1,18 @@
 /* Pocket — eXeLearning. GPL-3.0. Native pages and live iDevices inside a handheld. */
 (() => {
+  function addOpenLink() {
+    if (!document.body.classList.contains('exe-export') || document.querySelector('.exe-open-exelearning')) return;
+    const link = document.createElement('a');
+    link.className = 'exe-open-exelearning';
+    link.href = 'https://static.exelearning.dev/?url=https://github-proxy.exelearning.dev/?repo=ateeducacion/exelearning-style-pocket&branch=main';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.innerHTML = '<strong class="exe-open-logo">eXe</strong><span>Edit with eXeLearning</span>';
+    link.setAttribute('aria-label', 'Abrir este recurso en eXeLearning');
+    document.body.append(link);
+  }
   function init() {
+    addOpenLink();
     const main = document.querySelector('main.page');
     if (!document.body.classList.contains('exe-export') || !main || document.querySelector('#pocket-console')) return;
     const nodes = [...main.querySelectorAll('.idevice_node')].filter(node => !node.closest('.teacher-only'));
