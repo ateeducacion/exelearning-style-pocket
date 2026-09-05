@@ -152,3 +152,5 @@ body.exe-export { color: #293b53; background: #ccdae8; }
 .pocket-console .pocket-screen .welcome p { text-align: center; }
 .pocket-console.is-off .pocket-screen { opacity: 0; }
 .pocket-console .pocket-screen-menu button[aria-current="true"] { color: var(--lcd); }
+
+@media (max-width: 600px) { .exe-open-exelearning, .exe-open-close { display: none !important; } }
