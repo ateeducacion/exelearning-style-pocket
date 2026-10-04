@@ -100,7 +100,7 @@ otra licencia.
 
 
 Carcasa adaptada del portfolio de Ernesto Serrano; tema bajo [GPL-3.0](theme/LICENSE).
-Unidad didáctica, ilustraciones e iconos reutilizados del estilo Spectrum 128K del
+Recurso de ejemplo, ilustraciones e iconos reutilizados del estilo Spectrum 128K del
 Área de Tecnología Educativa del Gobierno de Canarias, bajo CC0 1.0.
 VT323, de Peter Hull, bajo [SIL OFL 1.1](theme/fonts/VT323-LICENSE.txt).
 Los archivos de eXeLearning y sus bibliotecas conservan sus licencias originales.

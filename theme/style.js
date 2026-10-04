@@ -149,7 +149,7 @@
       heading.textContent = view === 'pages' ? 'PÁGINAS' : pageTitle;
       const menu = document.createElement('nav');
       menu.className = 'pocket-screen-menu';
-      menu.setAttribute('aria-label', view === 'pages' ? 'Páginas de la unidad' : 'iDevices de esta página');
+      menu.setAttribute('aria-label', view === 'pages' ? 'Páginas del recurso' : 'iDevices de esta página');
       const items = view === 'pages' && navLinks.length ? navLinks : entries;
       items.forEach((item, index) => {
         const button = document.createElement(view === 'pages' && navLinks.length ? 'a' : 'button');

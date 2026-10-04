@@ -18,7 +18,7 @@ with zipfile.ZipFile(dist / "pocket.zip", "w", zipfile.ZIP_DEFLATED) as archive:
         if file.is_file() and not file.name.startswith("."):
             archive.write(file, file.relative_to(theme))
 shutil.copy2(dist / "pocket.zip", root / "content/resources/pocket.zip")
-files = [root / name for name in ("index.html", "content.xml", "content.dtd", "search_index.js")]
+files = [root / name for name in ("index.html", "content.xml", "content.dtd", "search_index.js", "screenshot.png")]
 for directory in ("theme", "content", "html", "idevices", "libs"):
     files.extend(file for file in (root / directory).rglob("*") if file.is_file() and not file.name.startswith("."))
 paths = sorted(set(file.relative_to(root).as_posix() for file in files))
