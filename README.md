@@ -14,6 +14,8 @@ las fases y verdadero/falso.
 
 Importa `pocket.zip` desde el gestor de estilos de eXeLearning 3 o posterior.
 La raíz del repositorio es el ejemplo ELPX descomprimido; `theme/` contiene el estilo.
+El botón «Edit with eXeLearning» es solo del ejemplo: está en `edit-in-exelearning.js`,
+fuera del estilo, y no aparece en los recursos que se exporten con él.
 Los menús se generan desde las páginas y los iDevices de cada recurso, sin nombres
 ni direcciones del ejemplo escritos en el JavaScript del tema.
 
@@ -66,7 +68,7 @@ Actions, `.gitignore`, `.gitattributes`, licencia y notas de `git archive`.
   necesita Pillow (`python3 -m pip install Pillow`). Adaptado del script de Hacker
   con la paleta de Pocket.
 - `scripts/package.py`, `scripts/check.py` y `scripts/check-browser.cjs`:
-  empaquetado y comprobaciones del recurso y la consola.
+  empaquetado, el botón del ejemplo en el HTML y comprobaciones del recurso y la consola.
 
 El workflow **Release** se ejecuta manualmente desde Actions o al subir una etiqueta
 `v*`. Comprueba el ejemplo y genera `exelearning-style-pocket-<versión>.zip`,
